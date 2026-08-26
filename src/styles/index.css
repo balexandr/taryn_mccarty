@@ -30,6 +30,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -68,15 +69,27 @@ img {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(10, 10, 9, 0.92);
-  backdrop-filter: blur(16px) saturate(1.2);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2);
   border-bottom: 0.5px solid var(--border);
   padding: 0 56px;
   height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* Frosted-glass fill lives on a pseudo-element, not .nav itself, because an
+   element with backdrop-filter becomes the containing block for its
+   position:fixed descendants. That was collapsing the mobile .nav-links
+   overlay to 0 height (top:72 and bottom:0 both resolved against .nav's own
+   72px box instead of the viewport) instead of covering the screen. */
+.nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(10, 10, 9, 0.92);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
 }
 
 .nav-logo {
