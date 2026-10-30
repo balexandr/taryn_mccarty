@@ -1,6 +1,6 @@
-# Taryn McCarty — Personal Website
+# Site Source
 
-React-based personal website built with Vite, deployed to GitHub Pages.
+Vite + React site source, deployed to GitHub Pages.
 
 ## Development
 
